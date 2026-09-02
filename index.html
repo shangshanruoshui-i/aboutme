@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="施俊杰的个人主页：AI Agent、计算机视觉与智能系统。" />
+    <title>施俊杰 — AI Engineer / Researcher</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="回到首页">
+        <span class="brand-mark">SJ</span>
+        <span class="brand-text">施俊杰<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a class="active" href="#top">首页</a>
+        <a href="#about">关于我</a>
+        <a href="#work">项目作品</a>
+        <a href="#notes">学习日志</a>
+        <a href="#research">科研成果</a>
+        <a href="mailto:shijunjie200111@163.com">联系我 <span aria-hidden="true">↗</span></a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="eyebrow-line"></span>AI Engineer · Researcher</p>
+          <h1>让复杂系统<br /><em>变得可用。</em></h1>
+          <p class="hero-intro">我是施俊杰，专注于 AI Agent、计算机视觉与智能系统方向。喜欢从问题出发，把研究、工程和真实场景连接起来。</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#work">查看我的作品 <span>↓</span></a>
+            <a class="text-link" href="mailto:shijunjie200111@163.com">联系我 <span>↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art reveal reveal-delay" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-slab">
+            <span class="slab-kicker">BUILD / EXPLORE / REPEAT</span>
+            <span class="slab-number">01</span>
+            <span class="slab-caption">从模型指标<br />到系统落地</span>
+          </div>
+          <div class="hero-spark spark-one">✳</div>
+          <div class="hero-spark spark-two">+</div>
+          <span class="vertical-note">SHANGHAI · BEIJING · 2026</span>
+        </div>
+        <div class="hero-foot reveal">
+          <span>Scroll to explore</span>
+          <span class="scroll-line"></span>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="个人方向">
+        <div class="marquee-track">
+          <span>AGENT SYSTEMS</span><b>✳</b><span>COMPUTER VISION</span><b>✳</b><span>PRODUCT THINKING</span><b>✳</b><span>AGENT SYSTEMS</span><b>✳</b><span>COMPUTER VISION</span><b>✳</b><span>PRODUCT THINKING</span><b>✳</b>
+        </div>
+      </section>
+
+      <section class="about shell section" id="about">
+        <div class="section-heading reveal">
+          <p class="section-index">01 / ABOUT</p>
+          <h2>研究问题，<br /><span>也研究怎么把它做好。</span></h2>
+        </div>
+        <div class="about-content">
+          <div class="about-text reveal">
+            <p class="lead">我目前就读于北京理工大学新一代电子信息专业，课程均分 90.4，专业排名第一。我的工作常常位于算法研究与产品工程的交界：一边关心模型是否足够准确，一边关心它能否被人真正使用。</p>
+            <p>从水下目标检测，到物流场景中的多 Agent 调度，再到企业内部的情报系统，我一直在探索同一个问题：怎样让技术在复杂环境里保持可靠、清晰，并产生实际价值。</p>
+            <p class="about-note">如需完整简历或更多详细信息，请发送邮件至 <a href="mailto:shijunjie200111@163.com">shijunjie200111@163.com</a>。</p>
+            <a class="arrow-link" href="#experience">看我的经历 <span>↘</span></a>
+          </div>
+          <div class="stat-grid reveal reveal-delay">
+            <div class="stat-card"><strong>90.4</strong><span>硕士阶段课程均分</span></div>
+            <div class="stat-card"><strong>10+</strong><span>主导策划的活动</span></div>
+            <div class="stat-card"><strong>95.98%</strong><span>安全检测模型精确率</span></div>
+            <div class="stat-card stat-card-accent"><strong>∞</strong><span>保持好奇，持续构建</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="work shell section" id="work">
+        <div class="section-topline reveal">
+          <div class="section-heading compact">
+            <p class="section-index">02 / SELECTED WORK</p>
+            <h2>正在构建的东西</h2>
+          </div>
+          <p class="section-aside">一些真实落地的系统，<br />以及下一件想做的事。</p>
+        </div>
+        <div class="filter-bar reveal" role="group" aria-label="筛选项目">
+          <button class="filter active" data-filter="all" type="button">全部 <span>04</span></button>
+          <button class="filter" data-filter="agent" type="button">Agent & 平台 <span>02</span></button>
+          <button class="filter" data-filter="vision" type="button">视觉算法 <span>01</span></button>
+          <button class="filter" data-filter="engineering" type="button">工程系统 <span>01</span></button>
+        </div>
+        <div class="project-grid" id="project-grid"></div>
+      </section>
+
+      <section class="experience shell section" id="experience">
+        <div class="section-heading compact reveal">
+          <p class="section-index">03 / EXPERIENCE</p>
+          <h2>一路走来，<br /><span>把每一次实践做深。</span></h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-date">2026.09 — 至今</div>
+            <div class="timeline-node"></div>
+            <div class="timeline-body"><p class="timeline-role">算法工程师（实习）</p><h3>上海玉贲智能科技有限公司</h3><p>主导工人安全检测模型优化与评估系统建设；自研 YobiAI 竞品分析 Agent 系统，负责多 Agent 编排、情报生成与内网部署。</p><div class="tags"><span>Python</span><span>FastAPI</span><span>Next.js</span><span>CV</span></div></div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-date">2023.04 — 2024.06</div>
+            <div class="timeline-node"></div>
+            <div class="timeline-body"><p class="timeline-role">开发工程师（实习）</p><h3>上海亿通国际股份有限公司</h3><p>参与浦东外高桥保税区政务门户及 CMS 后台建设，负责资讯采集管道、数据处理、高频缓存和 RBAC 权限模块。</p><div class="tags"><span>Spring Boot</span><span>Vue 2</span><span>Redis</span><span>Java</span></div></div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-date">2020.09 — 2027.06</div>
+            <div class="timeline-node"></div>
+            <div class="timeline-body"><p class="timeline-role">学习与研究</p><h3>北京理工大学 / 上海大学</h3><p>新一代电子信息硕士 · 通信工程学士。获得优秀学生标兵、优秀毕业生、多项学业奖学金；担任党支部副书记、班长。</p><div class="tags"><span>新一代电子信息</span><span>通信工程</span><span>组织协调</span></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="research shell section" id="research">
+        <div class="research-intro reveal">
+          <p class="section-index">04 / RESEARCH</p>
+          <h2>在噪声里，<br /><em>找到信号。</em></h2>
+        </div>
+        <div class="research-list reveal reveal-delay">
+          <article class="paper"><span class="paper-index">01</span><div><h3>WaSP-Net: A Network for FLS Object Detection</h3><p>针对水下成像中的相干斑噪声与微弱目标特征，探索频域动态滤波与声学几何先验结合的检测框架。</p></div><span class="paper-status">二区在投</span></article>
+          <article class="paper"><span class="paper-index">02</span><div><h3>Spectro-Geometric YOLO: A Framework for FLS Object Detection</h3><p>检测指标达到行业 SOTA，论文已被 OCEANS 2026 录用，并受邀作 Oral Report。</p></div><span class="paper-status">OCEANS 2026</span></article>
+        </div>
+      </section>
+
+      <section class="notes shell section" id="notes">
+        <div class="section-topline reveal">
+          <div class="section-heading compact">
+            <p class="section-index">05 / FIELD NOTES</p>
+            <h2>把每天学到的，<br /><span>留下来。</span></h2>
+          </div>
+          <a class="arrow-link" href="blog.html">进入学习笔记 <span>↗</span></a>
+        </div>
+        <div class="notes-grid" id="recent-posts"></div>
+      </section>
+
+      <section class="contact shell section reveal" id="contact">
+        <p class="section-index">06 / SAY HELLO</p>
+        <h2>有想一起解决的问题？<br /><a href="mailto:shijunjie200111@163.com">写信给我 <span>↗</span></a></h2>
+        <div class="contact-bottom"><span>Shanghai / Beijing</span><span>shijunjie200111@163.com</span><span>© 2026 SHIJUNJIE</span></div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell"><span>SHIJUNJIE.</span><span>Designed & built with curiosity.</span><a href="#top">回到顶部 ↑</a></footer>
+    <script src="content/posts.js"></script>
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+  </body>
+</html>
