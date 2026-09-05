@@ -6,46 +6,87 @@ const projects = [
 ];
 
 const grid = document.querySelector('#project-grid');
+const status = document.querySelector('#project-status');
+const filterLabels = { all: '全部', agent: 'Agent & 平台', vision: '视觉算法', engineering: '工程系统' };
 const renderProjects = (filter = 'all') => {
-  grid.innerHTML = projects.filter(project => filter === 'all' || project.category === filter).map(project => `
-    <article class="project-card ${project.future ? 'future' : ''}">
+  const shown = projects.filter(project => filter === 'all' || project.category === filter);
+  grid.innerHTML = shown.map((project, index) => `
+    <article class="project-card ${project.future ? 'future' : ''}" style="--card-index:${index}">
       <span class="project-no">${project.number}</span>
       <div class="project-icon" aria-hidden="true">${project.icon}</div>
       <h3>${project.title}</h3>
       <p>${project.description}</p>
       <div class="project-card-footer">
         <div class="project-tags">${project.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
-        <a class="project-link" href="${project.href}" ${project.href.startsWith('http') ? 'target="_blank" rel="noreferrer"' : ''} aria-label="打开 ${project.title}">↗</a>
+        <a class="project-link" href="${project.href}" ${project.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} aria-label="打开 ${project.title}">↗</a>
       </div>
     </article>`).join('');
+  if (status) status.textContent = `${filterLabels[filter]} · ${String(shown.length).padStart(2, '0')} 个项目`;
 };
 renderProjects();
 
-document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
+document.querySelectorAll('.filter[data-filter]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('.filter[data-filter]').forEach(item => item.classList.remove('active'));
   button.classList.add('active');
   renderProjects(button.dataset.filter);
 }));
 
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.desktop-nav');
-menuToggle.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  menuToggle.setAttribute('aria-expanded', open);
-});
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+const closeMenu = () => {
   nav.classList.remove('open');
   menuToggle.setAttribute('aria-expanded', 'false');
-}));
+  menuToggle.setAttribute('aria-label', '打开菜单');
+};
+menuToggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+});
+nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
 
-const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-  if (entry.isIntersecting) observer.unobserve(entry.target), entry.target.classList.add('visible');
-}), { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+const revealItems = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) observer.unobserve(entry.target), entry.target.classList.add('visible');
+  }), { threshold: .12 });
+  revealItems.forEach(item => observer.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add('visible'));
+}
+
+const heroArt = document.querySelector('.hero-art');
+const slab = document.querySelector('.hero-slab');
+const orbits = document.querySelectorAll('.hero-art .orbit');
+if (heroArt && slab && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  heroArt.addEventListener('pointermove', event => {
+    const bounds = heroArt.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    slab.style.transform = `rotate(7deg) translate(${x * 9}px, ${y * 9}px)`;
+    orbits.forEach((orbit, index) => { orbit.style.translate = `${x * (index ? -8 : 8)}px ${y * (index ? -5 : 5)}px`; });
+  });
+  heroArt.addEventListener('pointerleave', () => {
+    slab.style.transform = 'rotate(7deg)';
+    orbits.forEach(orbit => { orbit.style.translate = '0 0'; });
+  });
+}
 
 const sections = [...document.querySelectorAll('main section[id]')];
 const navLinks = [...document.querySelectorAll('.desktop-nav a')];
-window.addEventListener('scroll', () => {
+let scrollTicking = false;
+const updateActiveNav = () => {
   const current = [...sections].reverse().find(section => window.scrollY >= section.offsetTop - 180)?.id || 'top';
-  navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+  navLinks.forEach(link => {
+    const active = link.getAttribute('href') === `#${current}`;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+  });
+  scrollTicking = false;
+};
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) window.requestAnimationFrame(updateActiveNav), scrollTicking = true;
 }, { passive: true });
+updateActiveNav();

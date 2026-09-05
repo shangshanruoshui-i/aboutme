@@ -29,5 +29,22 @@
     document.title = `${post.title} — 施俊杰`;
     postRoot.innerHTML = `<article class="article"><a class="post-back article-back" href="blog.html">← 返回学习日志</a><p class="post-meta"><span>${escapeHtml(post.category)}</span><span>${escapeHtml(post.date)}</span><span>${escapeHtml(post.read)}</span></p><h1>${escapeHtml(post.title)}</h1><p class="article-lead">${escapeHtml(post.summary)}</p>${tags(post)}${post.cover ? `<img class="article-cover" src="${post.cover}" alt="" />` : ''}<div class="article-body">${post.body}</div>${post.asset ? `<a class="article-asset" href="${post.asset.href}" download>${post.asset.label}<span>↓</span></a>` : ''}</article>`;
   }
-  document.querySelectorAll('.menu-toggle').forEach(toggle => toggle.addEventListener('click', () => { const nav = toggle.parentElement.querySelector('.desktop-nav'); const open = nav.classList.toggle('open'); toggle.setAttribute('aria-expanded', String(open)); }));
+  if (!document.querySelector('#project-grid')) {
+    document.querySelectorAll('.menu-toggle').forEach(toggle => {
+      const nav = toggle.parentElement.querySelector('.desktop-nav');
+      const close = () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', '打开菜单');
+      };
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+      });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+      document.addEventListener('click', event => { if (!event.target.closest('.site-header')) close(); });
+    });
+  }
 })();

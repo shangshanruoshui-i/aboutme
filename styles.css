@@ -67,3 +67,12 @@ h1 em,h2 em { color:var(--orange); font-style:normal; }
 
 .about-note { margin-top: 16px; font-size: 13px; }
 .about-note a { color: var(--blue); border-bottom: 1px solid var(--blue); }
+
+.filter-status { margin: -8px 0 25px; color: #7c887f; font: 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.filter:focus-visible,.menu-toggle:focus-visible,a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.project-card:focus-within { transform: translateY(-7px); box-shadow: 10px 10px 0 rgba(30,101,214,.12); }
+.project-card { animation: card-in .5s ease both; animation-delay: calc(var(--card-index, 0) * 80ms); }
+@keyframes card-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.hero-slab,.orbit { transition: transform .35s ease, translate .35s ease; }
+@media (max-width: 800px) { .filter-status { margin-top: -8px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .marquee-track { animation: none; } .project-card { animation: none; } }
