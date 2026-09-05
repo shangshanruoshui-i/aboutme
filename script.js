@@ -60,19 +60,42 @@ if ('IntersectionObserver' in window) {
 const heroArt = document.querySelector('.hero-art');
 const slab = document.querySelector('.hero-slab');
 const orbits = document.querySelectorAll('.hero-art .orbit');
-if (heroArt && slab && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let slabRotation = { x: 0, y: 0 };
+let slabFlipped = false;
+const setSlabRotation = (x = 0, y = 0) => {
+  slabRotation = { x, y };
+  slab.style.setProperty('--slab-rotate-x', `${x}deg`);
+  slab.style.setProperty('--slab-rotate-y', `${y + (slabFlipped ? 180 : 0)}deg`);
+};
+const toggleSlab = () => {
+  slabFlipped = !slabFlipped;
+  slab.classList.toggle('is-flipped', slabFlipped);
+  slab.setAttribute('aria-pressed', String(slabFlipped));
+  slab.setAttribute('aria-label', slabFlipped ? '旋转查看卡片正面' : '旋转查看卡片背面');
+  setSlabRotation(slabRotation.x, slabRotation.y);
+};
+if (heroArt && slab && !reduceMotion) {
   heroArt.addEventListener('pointermove', event => {
     const bounds = heroArt.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - .5;
     const y = (event.clientY - bounds.top) / bounds.height - .5;
-    slab.style.transform = `rotate(7deg) translate(${x * 9}px, ${y * 9}px)`;
+    setSlabRotation(y * -7, x * 12);
     orbits.forEach((orbit, index) => { orbit.style.translate = `${x * (index ? -8 : 8)}px ${y * (index ? -5 : 5)}px`; });
   });
   heroArt.addEventListener('pointerleave', () => {
-    slab.style.transform = 'rotate(7deg)';
+    setSlabRotation();
     orbits.forEach(orbit => { orbit.style.translate = '0 0'; });
   });
 }
+slab.addEventListener('click', toggleSlab);
+slab.addEventListener('keydown', event => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    toggleSlab();
+  }
+  if (event.key === 'Escape' && slabFlipped) toggleSlab();
+});
 
 const sections = [...document.querySelectorAll('main section[id]')];
 const navLinks = [...document.querySelectorAll('.desktop-nav a')];
