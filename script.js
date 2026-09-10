@@ -1,8 +1,9 @@
 const projects = [
-  { category: 'agent', icon: '↗', number: '01', title: '智能物流 AI Agent 平台', description: '面向货主与司机的多角色对话系统，覆盖运单规划、司机调度、跨境物流与异常处理四类 Pipeline。', tags: ['Java', 'Spring Boot', 'RAG', 'MCP'], href: 'https://gitee.com/shangshanruoshui_i/lalamove-show.git' },
-  { category: 'agent', icon: '◌', number: '02', title: 'YobiAI 竞品分析 Agent 系统', description: '从网页检索到引用校验的情报生产线。六类 Agent 协同完成采集、分析、写作和审阅，稳定输出日报与周报。', tags: ['FastAPI', 'Next.js', 'Docker'], href: '#' },
-  { category: 'vision', icon: '⌁', number: '03', title: '工人安全检测评估系统', description: '通过模型对比、异常数据扫描与阈值分析，让侧端检测模型的召回率从 82.91% 提升至 91.30%，精确率提升至 95.98%。', tags: ['Python', 'Streamlit', 'CV'], href: '#' },
-  { category: 'engineering', icon: '+', number: '04', title: '下一件作品，从这里开始', description: '这是一个为未来项目预留的空间。可以放置产品原型、开源工具、研究复现或一篇值得分享的技术文章。', tags: ['Your next idea', 'Coming soon'], href: '#contact', future: true }
+  { category: 'vision', icon: '⌁', number: '01', title: 'ISP Atlas · 图像信号处理可视化系统', description: '从 Bayer RAW 到成图的 12 级 ISP 流水线：传感器模拟、AWB、去马赛克、CCM、LSC 全部级可调参、可对比，实时 PSNR/SSIM 评估；另含 8 大领域 × 18 个深度学习模型研究图鉴与自绘 SVG 结构图。约 3400 行原生 JS，零依赖。', tags: ['ISP', '传统算法', '深度学习', '可视化'], href: 'https://github.com/shangshanruoshui-i/ispatlas' },
+  { category: 'agent', icon: '↗', number: '02', title: '智能物流 AI Agent 平台', description: '面向货主与司机的多角色对话系统，覆盖运单规划、司机调度、跨境物流与异常处理四类 Pipeline。', tags: ['Java', 'Spring Boot', 'RAG', 'MCP'], href: 'https://gitee.com/shangshanruoshui_i/lalamove-show.git' },
+  { category: 'agent', icon: '◌', number: '03', title: 'YobiAI 竞品分析 Agent 系统', description: '从网页检索到引用校验的情报生产线。六类 Agent 协同完成采集、分析、写作和审阅，稳定输出日报与周报。', tags: ['FastAPI', 'Next.js', 'Docker'], href: '#' },
+  { category: 'vision', icon: '◎', number: '04', title: '工人安全检测评估系统', description: '通过模型对比、异常数据扫描与阈值分析，让侧端检测模型的召回率从 82.91% 提升至 91.30%，精确率提升至 95.98%。', tags: ['Python', 'Streamlit', 'CV'], href: '#' },
+  { category: 'engineering', icon: '+', number: '05', title: '下一件作品，从这里开始', description: '这是一个为未来项目预留的空间。可以放置产品原型、开源工具、研究复现或一篇值得分享的技术文章。', tags: ['Your next idea', 'Coming soon'], href: '#contact', future: true }
 ];
 
 const grid = document.querySelector('#project-grid');
